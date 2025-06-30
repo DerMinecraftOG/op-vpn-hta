@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>OP VPN 3001</title>
+  <HTA:APPLICATION 
+    ID="opvpn"
+    APPLICATIONNAME="OP VPN"
+    SCROLL="no"
+    SINGLEINSTANCE="yes"
+    WINDOWSTATE="normal"
+    BORDER="thin"
+    CAPTION="yes"
+    SHOWINTASKBAR="yes"
+    SYSMENU="yes" 
+  />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: white;
+      text-align: center;
+      padding-top: 60px;
+    }
+    h2 {
+      color: #00d1ff;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    #status {
+      font-weight: bold;
+      color: #00ff88;
+    }
+  </style>
+</head>
+<body>
+  <h2>OP VPN 3001</h2>
+  <p>Status: <span id="status">Getrennt</span></p>
+  <button class="btn" onclick="connect()">Verbinden</button>
+  <button class="btn" onclick="disconnect()">Trennen</button>
+
+  <script type="text/javascript">
+    function connect() {
+      document.getElementById("status").innerText = "Verbunden";
+      alert("VPN Verbindung aktiviert!");
+    }
+
+    function disconnect() {
+      document.getElementById("status").innerText = "Getrennt";
+      alert("VPN Verbindung getrennt!");
+    }
+  </script>
+</body>
+</html>
