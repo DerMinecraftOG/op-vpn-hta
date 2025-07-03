@@ -34,6 +34,13 @@
       border-radius: 5px;
       font-size: 14px;
     }
+    select {
+      padding: 8px;
+      font-size: 14px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+    }
     #status {
       font-weight: bold;
       color: #00ff88;
@@ -49,16 +56,28 @@
 </head>
 <body>
   <h2>OP VPN 3001</h2>
+  <p>Land auswählen:</p>
+  <select id="countrySelect">
+    <option>🇩🇪 Deutschland</option>
+    <option>🇺🇸 USA</option>
+    <option>🇬🇧 Großbritannien</option>
+    <option>🇫🇷 Frankreich</option>
+    <option>🇳🇱 Niederlande</option>
+    <option>🇨🇭 Schweiz</option>
+    <option>🇯🇵 Japan</option>
+    <option>🇸🇪 Schweden</option>
+  </select>
   <p>Status: <span id="status">Getrennt</span></p>
   <button class="btn" onclick="connect()">Verbinden</button>
   <button class="btn" onclick="disconnect()">Trennen</button>
 
-  <div class="footer">&copy; SupergamerGmbh</div>
+  <div class="footer">&copy; SuperGamer</div>
 
   <script type="text/javascript">
     function connect() {
-      document.getElementById("status").innerText = "Verbunden";
-      alert("VPN Verbindung aktiviert!");
+      var country = document.getElementById("countrySelect").value;
+      document.getElementById("status").innerText = "Verbunden mit " + country;
+      alert("VPN Verbindung zu " + country + " aktiviert!");
     }
 
     function disconnect() {
