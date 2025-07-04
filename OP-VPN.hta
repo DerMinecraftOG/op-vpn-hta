@@ -53,6 +53,38 @@
       color: #888;
     }
   </style>
+
+  <script language="vbscript">
+    Dim fso, file, folderPath, statusPath
+    folderPath = "C:\OP-VPN"
+    statusPath = folderPath & "\status.txt"
+
+    Sub Window_OnLoad
+      Set fso = CreateObject("Scripting.FileSystemObject")
+      If fso.FileExists(statusPath) Then
+        Set file = fso.OpenTextFile(statusPath, 1)
+        Dim status, country
+        status = file.ReadLine
+        country = file.ReadLine
+        file.Close
+
+        If status = "Verbunden" Then
+          document.getElementById("status").innerText = "Verbunden mit " & country
+          document.getElementById("countrySelect").value = country
+        Else
+          document.getElementById("status").innerText = "Getrennt"
+        End If
+      End If
+    End Sub
+
+    Sub SaveStatusToFile(status, country)
+      If Not fso.FolderExists(folderPath) Then fso.CreateFolder folderPath
+      Set file = fso.CreateTextFile(statusPath, True)
+      file.WriteLine status
+      file.WriteLine country
+      file.Close
+    End Sub
+  </script>
 </head>
 <body>
   <h2>OP VPN 3001</h2>
@@ -61,7 +93,7 @@
   <select id="countrySelect">
     <option value="Deutschland">Deutschland</option>
     <option value="USA">USA</option>
-    <option value="England">Großbritannien</option>
+    <option value="Großbritannien">Großbritannien</option>
     <option value="Frankreich">Frankreich</option>
     <option value="Niederlande">Niederlande</option>
     <option value="Schweiz">Schweiz</option>
@@ -80,11 +112,13 @@
     function connect() {
       var country = document.getElementById("countrySelect").value;
       document.getElementById("status").innerText = "Verbunden mit " + country;
+      SaveStatusToFile("Verbunden", country);
       alert("VPN-Verbindung zu " + country + " aktiviert!");
     }
 
     function disconnect() {
       document.getElementById("status").innerText = "Getrennt";
+      SaveStatusToFile("Getrennt", "");
       alert("VPN-Verbindung getrennt!");
     }
   </script>
