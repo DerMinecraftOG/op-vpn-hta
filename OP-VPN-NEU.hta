@@ -1,1 +1,92 @@
+<html>
+<head>
+  <title>OP VPN 3001</title>
+  <HTA:APPLICATION 
+    ID="opvpn"
+    APPLICATIONNAME="OP VPN"
+    SCROLL="no"
+    SINGLEINSTANCE="yes"
+    WINDOWSTATE="normal"
+    BORDER="thin"
+    CAPTION="yes"
+    SHOWINTASKBAR="yes"
+    SYSMENU="yes" 
+  />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1c1c1c;
+      color: white;
+      text-align: center;
+      padding-top: 60px;
+      margin: 0;
+    }
+    h2 {
+      color: #00d1ff;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    select {
+      padding: 8px;
+      font-size: 14px;
+      margin: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    #status {
+      font-weight: bold;
+      color: #00ff88;
+    }
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h2>OP VPN 3001</h2>
 
+  <p>Land auswählen:</p>
+  <select id="countrySelect">
+    <option value="Deutschland">Deutschland</option>
+    <option value="USA">USA</option>
+    <option value="England">Großbritannien</option>
+    <option value="Frankreich">Frankreich</option>
+    <option value="Niederlande">Niederlande</option>
+    <option value="Schweiz">Schweiz</option>
+    <option value="Japan">Japan</option>
+    <option value="Schweden">Schweden</option>
+  </select>
+
+  <p>Status: <span id="status">Getrennt</span></p>
+
+  <button class="btn" onclick="connect()">Verbinden</button>
+  <button class="btn" onclick="disconnect()">Trennen</button>
+
+  <div class="footer">&copy; SuperGamer</div>
+
+  <script type="text/javascript">
+    function connect() {
+      var country = document.getElementById("countrySelect").value;
+      document.getElementById("status").innerText = "Verbunden mit " + country;
+      alert("VPN-Verbindung zu " + country + " aktiviert!");
+    }
+
+    function disconnect() {
+      document.getElementById("status").innerText = "Getrennt";
+      alert("VPN-Verbindung getrennt!");
+    }
+  </script>
+</body>
+</html>
